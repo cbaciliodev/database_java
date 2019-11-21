@@ -1,0 +1,113 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <a
+            [routerLink]="['/updateCargo', 'nuevo']"
+            routerLinkActive="router-link-active"
+            class="btn waves-effect waves-light btn-xs btn-success text-dark mb-2"
+            style="font-size: 15px;"
+            ><i class="mdi mdi-account" style="font-size: 15px;"></i> Registar
+            Cargos </a
+          ><br />
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                id="home-tab"
+                data-toggle="tab"
+                href="#home"
+                role="tab"
+                aria-controls="home"
+                aria-selected="true"
+                ><span><i class="ti-book"></i> Lista de Cargos</span></a
+              >
+            </li>
+          </ul>
+          <div class="tab-content tabcontent-border" id="myTabContent" >
+            <div
+              class="tab-pane fade show active"
+              id="home"
+              role="tabpanel"
+              aria-labelledby="home-tab"
+            >
+            <div class="p-20">
+                <div class="table-responsive">
+                  <div
+                    class="alert alert-info"
+                    *ngIf="_listaCargos.length == 0"
+                  >
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="alert"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+
+                    <h3 class="text-info">
+                      <i class="fa fa-exclamation-circle"></i>
+                      Informaci&oacute;n
+                    </h3>
+                    No Existen Registros en la Base de Datos.
+                  </div>
+
+                  <table
+                    class="table table-hover table-striped color-bordered-table muted-bordered-table"
+                    *ngIf="_listaCargos.length > 0"
+                  >
+                    <thead class="thead-light">
+                      <tr>
+                        <th class="text-center">#</th>
+                        <th class="text-center">Codigo</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center" colspan="2">Acci&oacute;n</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        *ngFor="
+                          let item of _listaCargos
+                            | paginate: { itemsPerPage: 6, currentPage: p };
+                          let i = index
+                        "
+                      >
+                        <td class="text-center">{{ i + 1 }}</td>
+                        <td>{{ "C0-" + item.icod_CARGO }}</td>
+                        <td>{{ item.vdesc_CARGO }}</td>
+                        <td class="text-center">
+                          <button
+                            class="btn waves-effect waves-light btn-xs btn-warning"
+                            [routerLink]="['/updateCargo', item.icod_CARGO]"
+                          >
+                            <i class="fa fa-edit"></i> Editar
+                          </button>
+                        </td>
+                        <td class="text-center">
+                          <button
+                            (click)="deleteCargo(item.icod_CARGO)"
+                            class="btn waves-effect waves-light btn-xs btn-danger"
+                          >
+                            <i class="fa fa-trash"></i> Eliminar
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <pagination-controls
+                    class="bg-danger"
+                    *ngIf="_listaCargos.length != 0"
+                    (pageChange)="p = $event"
+                  ></pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

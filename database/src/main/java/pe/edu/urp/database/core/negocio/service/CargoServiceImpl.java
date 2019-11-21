@@ -11,15 +11,37 @@ import pe.edu.urp.database.core.negocio.bean.Cargo;
 import pe.edu.urp.database.core.util.AppException;
 
 @Service
-public class CargoServiceImpl implements CargoService{
+public class CargoServiceImpl implements CargoService {
 
 	@Autowired
 	private CargoDao cargoDao;
-	
+
 	@Override
 	public List<Cargo> getListaCargos() throws AppException {
-		// TODO Auto-generated method stub
 		return cargoDao.getListaCargos();
+	}
+
+	@Override
+	public String createCargo(Cargo cargo) throws AppException {
+
+		return cargoDao.createCargo(cargo);
+	}
+
+	@Override
+	public Cargo getCargoById(Integer id) throws AppException {
+		
+		return cargoDao.getCargoById(id);
+	}
+
+	@Override
+	public String updateCargo(Cargo cargo) throws AppException {
+
+		return cargoDao.updateCargo(cargo);
+	}
+
+	@Override
+	public String deleteCargo(Integer id) throws AppException {
+		return cargoDao.deleteCargo(id);
 	}
 
 }

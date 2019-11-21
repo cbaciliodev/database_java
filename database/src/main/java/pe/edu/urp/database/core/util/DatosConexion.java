@@ -19,7 +19,7 @@ public class DatosConexion {
 	        this.username = "sa";
 	        this.dirver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 	        this.password = "C44910167d";
-	        this.url = "jdbc:sqlserver://localhost:1433;databaseName=db_reunion";
+	        this.url = "jdbc:sqlserver://localhost:1433;databaseName=REUNIONES";
 	    }
 
 	    public String getUsername() {

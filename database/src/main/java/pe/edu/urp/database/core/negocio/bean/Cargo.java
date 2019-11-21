@@ -2,34 +2,39 @@ package pe.edu.urp.database.core.negocio.bean;
 
 public class Cargo {
 
-	private Integer ICodigo_Cargo;
-	private String VConcepto_Cargo;
-	
+	private Integer ICOD_CARGO;
+	private String VDESC_CARGO;
+
 	public Cargo() {
-		// TODO Auto-generated constructor stub
 	}
-	
-	
-	public Cargo(Integer iCodigo_Cargo, String vConcepto_Cargo) {
+
+	public Cargo(Integer iCOD_CARGO, String vDESC_CARGO) {
 		super();
-		ICodigo_Cargo = iCodigo_Cargo;
-		VConcepto_Cargo = vConcepto_Cargo;
-	}
-
-
-
-	public Integer getICodigo_Cargo() {
-		return ICodigo_Cargo;
-	}
-	public void setICodigo_Cargo(Integer iCodigo_Cargo) {
-		ICodigo_Cargo = iCodigo_Cargo;
-	}
-	public String getVConcepto_Cargo() {
-		return VConcepto_Cargo;
-	}
-	public void setVConcepto_Cargo(String vConcepto_Cargo) {
-		VConcepto_Cargo = vConcepto_Cargo;
+		ICOD_CARGO = iCOD_CARGO;
+		VDESC_CARGO = vDESC_CARGO;
 	}
 	
 	
+
+	public Cargo(String vDESC_CARGO) {
+		super();
+		VDESC_CARGO = vDESC_CARGO;
+	}
+
+	public Integer getICOD_CARGO() {
+		return ICOD_CARGO;
+	}
+
+	public void setICOD_CARGO(Integer iCOD_CARGO) {
+		ICOD_CARGO = iCOD_CARGO;
+	}
+
+	public String getVDESC_CARGO() {
+		return VDESC_CARGO;
+	}
+
+	public void setVDESC_CARGO(String vDESC_CARGO) {
+		VDESC_CARGO = vDESC_CARGO;
+	}
+
 }
