@@ -8,6 +8,7 @@ import { DocenteComponent } from './docente/docente.component';
 import { UpdateDocenteComponent } from './docente/update-docente.component';
 import { ActividadesComponent } from './actividades/actividades.component';
 import { ActividadUpdateComponent } from './actividades/actividad-update.component';
+import { TemaComponent } from './tema/tema.component';
 
 
 const pagesRoutes: Routes = [
@@ -23,6 +24,9 @@ const pagesRoutes: Routes = [
             { path: 'updateDocente/:id', component: UpdateDocenteComponent },
             { path: 'actividad', component: ActividadesComponent },
             { path: 'updateActividad/:id', component: ActividadUpdateComponent },
+            { path: 'tema', component: TemaComponent },
+
+
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
         ]
     },

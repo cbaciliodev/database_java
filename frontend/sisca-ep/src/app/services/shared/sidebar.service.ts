@@ -13,7 +13,8 @@ export class SidebarService {
         {titulo: 'Dashboard', url: '/dashboard'},
         {titulo:'Cargos', url:'/cargo'},
         {titulo:'Docentes', url:'/docente'},
-        {titulo:'Actividades',url:'/actividad'}
+        {titulo:'Actividades',url:'/actividad'},
+        {titulo:'Temas',url:'/tema'}
       ]
     }
   ];

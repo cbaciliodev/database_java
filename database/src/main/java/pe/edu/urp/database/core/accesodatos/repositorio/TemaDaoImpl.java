@@ -6,12 +6,14 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import pe.edu.urp.database.core.interfaces.TemaDao;
 import pe.edu.urp.database.core.negocio.bean.Actividad;
 import pe.edu.urp.database.core.negocio.bean.Tema;
 import pe.edu.urp.database.core.util.AppException;
 import pe.edu.urp.database.core.util.Conexion;
-
+@Repository
 public class TemaDaoImpl implements TemaDao {
 
 	Conexion conexion = null;

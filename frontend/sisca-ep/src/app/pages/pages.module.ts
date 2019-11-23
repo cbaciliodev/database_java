@@ -25,6 +25,7 @@ import { DocenteComponent } from './docente/docente.component';
 import { UpdateDocenteComponent } from './docente/update-docente.component';
 import { ActividadesComponent } from './actividades/actividades.component';
 import { ActividadUpdateComponent } from './actividades/actividad-update.component';
+import { TemaComponent } from './tema/tema.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { ActividadUpdateComponent } from './actividades/actividad-update.compone
     DocenteComponent,
     UpdateDocenteComponent,
     ActividadesComponent,
-    ActividadUpdateComponent
+    ActividadUpdateComponent,
+    TemaComponent
   ],
   imports: [
     CommonModule,
