@@ -11,6 +11,22 @@ public class Actividad {
 	public Actividad() {
 		super();
 	}
+	
+	
+
+	public Actividad(String vDESC_ACTIVIDAD) {
+		super();
+		VDESC_ACTIVIDAD = vDESC_ACTIVIDAD;
+	}
+
+
+
+	public Actividad(Integer iCOD_ACTIVIDAD) {
+		super();
+		ICOD_ACTIVIDAD = iCOD_ACTIVIDAD;
+	}
+
+
 
 	public Actividad(Integer iCOD_ACTIVIDAD, String vDESC_ACTIVIDAD, Date dFEC_ACTIVIDAD) {
 		super();
