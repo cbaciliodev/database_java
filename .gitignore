@@ -1,3 +1,5 @@
 /ws
 
 /*.zip
+
+/package-lock.json
