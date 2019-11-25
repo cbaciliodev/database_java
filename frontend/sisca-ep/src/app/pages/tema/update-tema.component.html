@@ -52,24 +52,24 @@
                   *ngIf="!actualizar; else actividades"
                 >
                   <div class="form-group  col-xs-12 col-md-12 col-lg-12">
-                    <label for="actividad" class="control-label"
+                    <label for="icod_ACTIVIDAD" class="control-label"
                       >Lista de Actividades:
                     </label>
 
                     <div class="form-group  col-xs-12 col-md-12 col-lg-12">
                       <select
                         (change)="valor($event)"
-                        id="actividad"
-                        [(ngModel)]="_tema.actividad.icod_ACTIVIDAD"
-                        name="actividad"
+                        id="icod_ACTIVIDAD"
+                        [(ngModel)]="_tema.actividad.vdesc_ACTIVIDAD"
+                        name="icod_ACTIVIDAD"
                         class="form-control"
-                        #actividad="ngModel"
+                        #icod_ACTIVIDAD="ngModel"
                         [ngClass]="{
-                          'is-invalid': f.submitted && actividad.invalid
+                          'is-invalid': f.submitted && icod_ACTIVIDAD.invalid
                         }"
                         required
                       >
-                        <option value="0">Seleccione</option>
+                        <option value="">Seleccione</option>
                         <option
                           [value]="item.icod_ACTIVIDAD"
                           *ngFor="let item of _lista_actividades"
@@ -78,7 +78,7 @@
                       </select>
                       <div
                         class="pt-1 text-danger"
-                        *ngIf="f.submitted && actividad.invalid"
+                        *ngIf="f.submitted && icod_ACTIVIDAD.invalid"
                         class="invalid-feedback"
                       >
                         <span class="form-control-feedback">

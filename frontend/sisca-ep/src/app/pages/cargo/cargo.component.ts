@@ -33,7 +33,6 @@ export class CargoComponent implements OnInit {
     this._serviceCargo.findAllCargos()
       .subscribe(res => {
         this._listaCargos = res;
-        console.log(this._listaCargos);
       })
   }
 
@@ -67,7 +66,4 @@ export class CargoComponent implements OnInit {
         }
       });
   }
-
-  }
-
-
+}

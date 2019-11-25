@@ -24,7 +24,6 @@ export class ActividadUpdateComponent implements OnInit {
     _activateRouter.params.subscribe(params => {
       let id = params['id'];
       if (id !== 'nuevo') {
-        console.log(id);
         this.actualizar = true;
         this.cargarActividad(id);
       }
@@ -39,7 +38,6 @@ export class ActividadUpdateComponent implements OnInit {
     this._serviceCargo.findOneActividadById(id)
       .subscribe(actividad => {
         this.actividadUpdate = actividad
-        console.log(actividad);
       })
   };
 
@@ -53,7 +51,6 @@ export class ActividadUpdateComponent implements OnInit {
     if (s == 'create') {
       this._serviceCargo.createActividad(this.actividadUpdate)
         .subscribe(data => {
-          console.log(data);
           swal(`Actividad Creada`, `${data.mensaje}`, `success`)
           this._router.navigate(['/actividad'])
         });
@@ -61,7 +58,6 @@ export class ActividadUpdateComponent implements OnInit {
     if (s == 'update') {
       this._serviceCargo.updateActividad(this.actividadUpdate, this.actividadUpdate.icod_ACTIVIDAD)
         .subscribe(data => {
-          console.log(data);
           swal(`Actividad Actualizada`, `${data.mensaje}`, `success`)
           this._router.navigate(['/actividad'])
         });

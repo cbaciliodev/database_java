@@ -14,7 +14,8 @@ export class SidebarService {
         {titulo:'Cargos', url:'/cargo'},
         {titulo:'Docentes', url:'/docente'},
         {titulo:'Actividades',url:'/actividad'},
-        {titulo:'Temas',url:'/tema'}
+        {titulo:'Temas',url:'/tema'},
+        {titulo:'Reuniones', url:'/reunion'}
       ]
     }
   ];

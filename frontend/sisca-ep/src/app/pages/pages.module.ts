@@ -22,6 +22,8 @@ import { ActividadesComponent } from './actividades/actividades.component';
 import { ActividadUpdateComponent } from './actividades/actividad-update.component';
 import { TemaComponent } from './tema/tema.component';
 import { UpdateTemaComponent } from './tema/update-tema.component';
+import { ReunionComponent } from './reunion/reunion.component';
+import { AsignacionesTemasComponent } from './reunion/asignaciones-temas.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { UpdateTemaComponent } from './tema/update-tema.component';
     ActividadesComponent,
     ActividadUpdateComponent,
     TemaComponent,
-    UpdateTemaComponent
+    UpdateTemaComponent,
+    ReunionComponent,
+    AsignacionesTemasComponent
   ],
   imports: [
     CommonModule,

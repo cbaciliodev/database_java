@@ -24,7 +24,6 @@ export class UpdateCargoComponent implements OnInit {
     _activateRouter.params.subscribe(params => {
       let id = params['id'];
       if (id !== 'nuevo') {
-        console.log(id);
         this.actualizar = true;
         this.cargarCargo(id);
       }
@@ -39,7 +38,6 @@ export class UpdateCargoComponent implements OnInit {
     this._serviceCargo.findOneById(id)
       .subscribe(cargo => {
         this.cargoUpdate = cargo
-        console.log(cargo);
       })
   };
 
@@ -54,7 +52,6 @@ export class UpdateCargoComponent implements OnInit {
     if (s == 'create') {
       this._serviceCargo.createCargo(this.cargoUpdate)
         .subscribe(data => {
-          console.log(data);
           swal(`Cargo Creado`, `${data.mensaje}`, `success`)
           this._router.navigate(['/cargo'])
         });
@@ -62,13 +59,9 @@ export class UpdateCargoComponent implements OnInit {
     if (s == 'update') {
       this._serviceCargo.updateCargo(this.cargoUpdate, this.cargoUpdate.icod_CARGO)
         .subscribe(data => {
-          console.log(data);
           swal(`Cargo Actualizado`, `${data.mensaje}`, `success`)
           this._router.navigate(['/cargo'])
         });
     }
   }
-
-
-
 }

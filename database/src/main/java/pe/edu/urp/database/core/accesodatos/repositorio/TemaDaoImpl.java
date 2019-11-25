@@ -260,6 +260,7 @@ public class TemaDaoImpl implements TemaDao {
 				tema.setICOD_TEMA(rs.getInt(1));
 				tema.setVDESC_TEMA(rs.getString(2));
 				tema.setCEST_TEMA(rs.getString(3));
+				tema.setActividad(new Actividad(rs.getInt(4),rs.getString(5)));
 				listaTema.add(tema);
 				tema = null;
 

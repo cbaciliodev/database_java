@@ -8,6 +8,7 @@ import swal from 'sweetalert';
 import { Docente } from 'src/app/models/docente.model';
 import { Actividad } from 'src/app/models/actividad.model';
 import { Tema } from 'src/app/models/tema.model';
+import { Asignado } from 'src/app/models/asignado.model';
 
 @Injectable({
   providedIn: 'root'
@@ -232,6 +233,22 @@ export class CargoService {
 
     return this._httpClient.delete<any>(url)
       .pipe(catchError(e => {
+        return throwError(e)
+      }));
+  }
+
+
+  /*
+  ASIGNACION DE TEMA A PROFESORES
+   */
+
+  createAsignacion(asignado: Asignado): Observable<any> {
+
+    let url = env.API_URI.concat('asignado');
+
+    return this._httpClient.post<any>(url, asignado)
+      .pipe(catchError(e => {
+        //swal(`El Correo ya existe`, `${e.error.mensaje.errors.correo.message}`, `error`)
         return throwError(e)
       }));
   }

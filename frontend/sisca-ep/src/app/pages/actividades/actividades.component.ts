@@ -23,14 +23,12 @@ export class ActividadesComponent implements OnInit {
     this.findAllActividad();
   }
 
-
   findAllActividad() {
 
     this._listaActividad = [];
     this._serviceCargo.findAllActividades()
       .subscribe(res => {
         this._listaActividad = res;
-        console.log(this._listaActividad);
       })
   }
 

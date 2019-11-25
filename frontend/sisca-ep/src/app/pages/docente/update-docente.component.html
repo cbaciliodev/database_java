@@ -108,12 +108,15 @@
                     </div>
                   </div>
                 </div>
-                <div class="row col-xs-12 col-md-12 col-lg-12">
+
+                <div
+                  class="row col-xs-12 col-md-12 col-lg-12"
+                  *ngIf="!actualizar; else docente"
+                >
                   <div class="form-group  col-xs-12 col-md-12 col-lg-12">
                     <label for="vdesc_CARGO" class="control-label"
                       >Cargo del Docente:
                     </label>
-
                     <div class="form-group  col-xs-12 col-md-12 col-lg-12">
                       <select
                         (change)="valor($event)"
@@ -125,15 +128,16 @@
                         [ngClass]="{
                           'is-invalid': f.submitted && vdesc_CARGO.invalid
                         }"
-                        
                         required
                       >
-                        <option value="_docente.cargo.vdesc_CARGO">Seleccione</option>
-                        <!-- <option
+                        <option value=""
+                          >Seleccione</option
+                        >
+                         <option
                           [value]="item.icod_CARGO"
                           *ngFor="let item of _lista_cargos"
                           >{{ item.vdesc_CARGO }}</option
-                        > -->
+                        > 
                       </select>
                       <div
                         class="pt-1 text-danger"
@@ -148,6 +152,45 @@
                     </div>
                   </div>
                 </div>
+                <ng-template #docente>
+                  <div class="row col-xs-12 col-md-12 col-lg-12">
+                    <div class="form-group  col-xs-12 col-md-12 col-lg-12">
+                      <label for="vdesc_CARGO" class="control-label"
+                        >Cargo del Docente:
+                      </label>
+
+                      <div class="form-group  col-xs-12 col-md-12 col-lg-12">
+                        <select
+                          (change)="valor($event)"
+                          id="vdesc_CARGO"
+                          [(ngModel)]="_docente.cargo.vdesc_CARGO"
+                          name="vdesc_CARGO"
+                          class="form-control"
+                          #vdesc_CARGO="ngModel"
+                          [ngClass]="{
+                            'is-invalid': f.submitted && vdesc_CARGO.invalid
+                          }"
+                          required
+                        >
+                          <option [value]="_docente.cargo.vdesc_CARGO"
+                            >{{_docente.cargo.vdesc_CARGO}}</option
+                          >
+                        </select>
+                        <div
+                          class="pt-1 text-danger"
+                          *ngIf="f.submitted && vdesc_CARGO.invalid"
+                          class="invalid-feedback"
+                        >
+                          <span class="form-control-feedback">
+                            <i class="fa fa-times-circle-o"></i> Este campo es
+                            <strong>requerido.</strong>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+
                 <button
                   *ngIf="!actualizar; else elseTemplate"
                   class="btn btn-info form-group "

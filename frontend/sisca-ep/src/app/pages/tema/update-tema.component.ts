@@ -33,15 +33,13 @@ export class UpdateTemaComponent implements OnInit {
       if (id !== 'nuevo') {
         this.actualizar = true;
         this.cargarTema(id);
-      }else{
-        this._lista_actividades=[];
       }
     })
 
   }
 
   ngOnInit() {
-    
+
     this.cargarListaActividades();
   }
 
@@ -54,8 +52,6 @@ export class UpdateTemaComponent implements OnInit {
     this._serviceCargo.findOneTemaById(id)
       .subscribe(tema => {
         this._tema = tema
-
-        console.log(this._tema);
       });
   };
 
@@ -72,21 +68,20 @@ export class UpdateTemaComponent implements OnInit {
 
   guardarDocente(f: NgForm, s: string) {
 
-    console.log(f.value)
-    console.log(this._tema)
-
     if (f.invalid) {
       return;
     }
 
     if (s == 'create') {
-
+      this._tema.actividad.icod_ACTIVIDAD = f.value.icod_ACTIVIDAD;
       this._serviceCargo.createTemas(this._tema)
         .subscribe(data => {
           swal(`Docente Creado`, `${data.mensaje}`, `success`)
           this._router.navigate(['/tema'])
         });
     }
+
+    console.log(this._tema.actividad.icod_ACTIVIDAD)
 
     if (s == 'update') {
       this._serviceCargo.updateTemas(this._tema, this._tema.icod_TEMA)

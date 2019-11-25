@@ -24,13 +24,11 @@ export class UpdateDocenteComponent implements OnInit {
   constructor(public _serviceCargo: CargoService,
     public _router: Router,
     public _activateRouter: ActivatedRoute) {
+    this._lista_cargos = [];
 
-
-    console.log(this._docente, ' docente')
     _activateRouter.params.subscribe(params => {
       let id = params['id'];
       if (id !== 'nuevo') {
-        console.log(id);
         this.actualizar = true;
         this.cargarDocente(id);
       }
@@ -51,7 +49,6 @@ export class UpdateDocenteComponent implements OnInit {
     this._serviceCargo.findOneDocenteById(id)
       .subscribe(docente => {
         this._docente = docente
-        console.log(docente.cargo.vdesc_CARGO);
       })
   };
 
@@ -72,6 +69,8 @@ export class UpdateDocenteComponent implements OnInit {
 
     if (s == 'create') {
 
+      this._docente.cargo.icod_CARGO = f.value.vdesc_CARGO
+
       this._serviceCargo.createDocente(this._docente)
         .subscribe(data => {
           swal(`Docente Creado`, `${data.mensaje}`, `success`)
@@ -87,5 +86,4 @@ export class UpdateDocenteComponent implements OnInit {
         });
     }
   }
-
 }

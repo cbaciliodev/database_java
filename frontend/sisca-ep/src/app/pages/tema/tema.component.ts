@@ -12,6 +12,7 @@ import { Actividad } from 'src/app/models/actividad.model';
 })
 export class TemaComponent implements OnInit {
 
+  public _actividad: Actividad;
   public _listaTemas: Tema[];
   public _listaActividad: Actividad[];
   public cantidad: number;
@@ -36,7 +37,6 @@ export class TemaComponent implements OnInit {
     this._serviceCargo.findAllActividades()
       .subscribe(res => {
         this._listaActividad = res;
-        console.log(this._listaActividad);
       })
   }
 
@@ -58,7 +58,6 @@ export class TemaComponent implements OnInit {
           this._listaTemas = [];
           return;
         }
-        console.log(this._listaTemas);
       })
   }
 
@@ -84,6 +83,7 @@ export class TemaComponent implements OnInit {
                   icon: `success`,
                 });
               }
+              this.findAllTemasById(data.tema.actividad.icod_ACTIVIDAD);
             });
 
         } else {

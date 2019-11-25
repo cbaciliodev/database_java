@@ -37,7 +37,6 @@ export class DocenteComponent implements OnInit {
     this._serviceCargo.findAllDocentes()
       .subscribe(res => {
         this._listaDocente = res;
-        console.log(this._listaDocente);
       })
   }
   deleteDocente(id: number) {

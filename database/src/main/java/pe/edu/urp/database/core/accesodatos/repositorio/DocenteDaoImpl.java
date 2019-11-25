@@ -136,7 +136,7 @@ public class DocenteDaoImpl implements DocenteDao {
 				docente.setVNOMBRE_DOCENTE(rs.getString(2));
 				docente.setVAPATERNO_DOCENTE(rs.getString(3));
 				docente.setVAMATERNO_DOCENTE(rs.getString(4));
-				docente.setCargo(new Cargo(rs.getString(5)));
+				docente.setCargo(new Cargo(rs.getInt(5),rs.getString(6)));
 			}
 
 			conexion.getConexion().commit();

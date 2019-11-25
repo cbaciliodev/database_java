@@ -137,6 +137,11 @@ public class TemaController {
 		String newtema = null;
 		Tema objtema = null;
 
+		System.out.println(tema.getCEST_TEMA());
+		System.out.println(tema.getVDESC_TEMA());
+		System.out.println(tema.getActividad().getICOD_ACTIVIDAD());
+		System.out.println(id);
+		
 		try {
 
 			objtema = temaService.getTemaById(id);
@@ -159,7 +164,6 @@ public class TemaController {
 
 		try {
 			tema.setICOD_TEMA(id);
-			;
 			newtema = temaService.updateTema(tema);
 		} catch (AppException e) {
 			objetResponse.put("mensaje", "error al realizar el registro a la base de datos.");

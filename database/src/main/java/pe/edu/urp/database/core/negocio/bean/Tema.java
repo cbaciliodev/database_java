@@ -13,6 +13,15 @@ public class Tema {
 	
 	
 
+	public Tema(Integer iCOD_TEMA, String vDESC_TEMA, String cEST_TEMA) {
+		super();
+		ICOD_TEMA = iCOD_TEMA;
+		VDESC_TEMA = vDESC_TEMA;
+		CEST_TEMA = cEST_TEMA;
+	}
+
+
+
 	public Tema(Actividad actividad) {
 		super();
 		this.actividad = actividad;

@@ -11,6 +11,18 @@ public class Docente {
 	public Docente() {
 	}
 
+	
+	
+	public Docente(Integer iCOD_DOCENTE, String vNOMBRE_DOCENTE, String vAPATERNO_DOCENTE, String vAMATERNO_DOCENTE) {
+		super();
+		ICOD_DOCENTE = iCOD_DOCENTE;
+		VNOMBRE_DOCENTE = vNOMBRE_DOCENTE;
+		VAPATERNO_DOCENTE = vAPATERNO_DOCENTE;
+		VAMATERNO_DOCENTE = vAMATERNO_DOCENTE;
+	}
+
+
+
 	public Integer getICOD_DOCENTE() {
 		return ICOD_DOCENTE;
 	}
