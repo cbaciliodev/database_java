@@ -13,6 +13,7 @@ import pe.edu.urp.database.core.negocio.bean.Actividad;
 import pe.edu.urp.database.core.negocio.bean.Tema;
 import pe.edu.urp.database.core.util.AppException;
 import pe.edu.urp.database.core.util.Conexion;
+
 @Repository
 public class TemaDaoImpl implements TemaDao {
 
@@ -34,7 +35,7 @@ public class TemaDaoImpl implements TemaDao {
 
 		}
 
-		String query = "{call SP_LISTAR_TemaS}";
+		String query = "{call SP_LISTAR_TEMAS}";
 
 		try {
 			conexion.getConexion().setAutoCommit(false);
@@ -47,7 +48,8 @@ public class TemaDaoImpl implements TemaDao {
 				tema.setICOD_TEMA(rs.getInt(1));
 				tema.setVDESC_TEMA(rs.getString(2));
 				tema.setCEST_TEMA(rs.getString(3));
-				tema.setActividad(new Actividad(rs.getInt(4)));;
+				tema.setActividad(new Actividad(rs.getInt(4)));
+				;
 				listaTema.add(tema);
 				tema = null;
 
@@ -75,15 +77,15 @@ public class TemaDaoImpl implements TemaDao {
 
 		}
 
-		String query = "{call SP_INSERTAR_TemaS(?,?,?,?)}";
+		String query = "{call SP_INSERTAR_TEMA(?,?)}";
 
 		try {
 			conexion.getConexion().setAutoCommit(false);
 			cstmt = conexion.getConexion().prepareCall(query);
-			
-			cstmt.setString("VNOMBRE_Tema", tema.getVDESC_TEMA());
-			cstmt.setInt("FK_ICOD_CARGO", tema.getActividad().getICOD_ACTIVIDAD());
-			
+
+			cstmt.setString("VDESC_TEMA", tema.getVDESC_TEMA());
+			cstmt.setInt("FK_ICOD_ACTIVIDAD", tema.getActividad().getICOD_ACTIVIDAD());
+
 			int rest = cstmt.executeUpdate();
 
 			if (rest == 1) {
@@ -117,12 +119,12 @@ public class TemaDaoImpl implements TemaDao {
 
 		}
 
-		String query = "{call SP_OBTEBER_Tema_ID(?)}";
+		String query = "{call SP_OBTEBER_TEMA_ID(?)}";
 
 		try {
 			conexion.getConexion().setAutoCommit(false);
 			cstmt = conexion.getConexion().prepareCall(query);
-			cstmt.setInt("ICOD_Tema", id);
+			cstmt.setInt("ICOD_TEMA", id);
 			rs = cstmt.executeQuery();
 
 			while (rs.next()) {
@@ -131,8 +133,9 @@ public class TemaDaoImpl implements TemaDao {
 				tema.setICOD_TEMA(rs.getInt(1));
 				tema.setVDESC_TEMA(rs.getString(2));
 				tema.setCEST_TEMA(rs.getString(3));
-				tema.setActividad(new Actividad(rs.getInt(4)));;
-			
+				tema.setActividad(new Actividad(rs.getInt(4), rs.getString(5)));
+				;
+
 			}
 
 			conexion.getConexion().commit();
@@ -153,7 +156,6 @@ public class TemaDaoImpl implements TemaDao {
 	@Override
 	public String updateTema(Tema tema) throws AppException {
 
-	
 		try {
 			conexion = new Conexion();
 
@@ -161,15 +163,14 @@ public class TemaDaoImpl implements TemaDao {
 
 		}
 
-		String query = "{call SP_UPDATE_Tema(?,?,?,?,?)}";
+		String query = "{call SP_UPDATE_TEMA(?,?,?)}";
 
 		try {
 			conexion.getConexion().setAutoCommit(false);
 			cstmt = conexion.getConexion().prepareCall(query);
-			cstmt.setInt("ICOD_Tema", tema.getICOD_TEMA());
-			cstmt.setString("VNOMBRE_Tema", tema.getVDESC_TEMA());
-			cstmt.setString("VAPATERNO_Tema", tema.getCEST_TEMA());
-			cstmt.setInt("VAMATERNO_Tema", tema.getActividad().getICOD_ACTIVIDAD());
+			cstmt.setInt("ICOD_TEMA", tema.getICOD_TEMA());
+			cstmt.setString("VDESC_TEMA", tema.getVDESC_TEMA());
+			cstmt.setInt("FK_ICOD_ACTIVIDAD", tema.getActividad().getICOD_ACTIVIDAD());
 
 			int rest = cstmt.executeUpdate();
 
@@ -202,12 +203,12 @@ public class TemaDaoImpl implements TemaDao {
 
 		}
 
-		String query = "{call SP_DELETE_Tema(?)}";
+		String query = "{call SP_DELETE_TEMA(?)}";
 
 		try {
 			conexion.getConexion().setAutoCommit(false);
 			cstmt = conexion.getConexion().prepareCall(query);
-			cstmt.setInt("ICOD_Tema", id);
+			cstmt.setInt("ICOD_TEMA", id);
 			int rest = cstmt.executeUpdate();
 
 			if (rest == 1) {
@@ -231,5 +232,48 @@ public class TemaDaoImpl implements TemaDao {
 		}
 
 		return message;
+	}
+
+	@Override
+	public List<Tema> getListaTemasById(Integer id) throws AppException {
+
+		List<Tema> listaTema = new ArrayList<>();
+
+		try {
+			conexion = new Conexion();
+
+		} catch (Exception e) {
+
+		}
+
+		String query = "{call SP_OBTEBER_LISTA_TEMA_ID(?)}";
+
+		try {
+			conexion.getConexion().setAutoCommit(false);
+			cstmt = conexion.getConexion().prepareCall(query);
+			cstmt.setInt("ICOD_ACTIVIDAD", id);
+			rs = cstmt.executeQuery();
+			conexion.getConexion().commit();
+
+			while (rs.next()) {
+				Tema tema = new Tema();
+				tema.setICOD_TEMA(rs.getInt(1));
+				tema.setVDESC_TEMA(rs.getString(2));
+				tema.setCEST_TEMA(rs.getString(3));
+				listaTema.add(tema);
+				tema = null;
+
+			}
+		} catch (Exception e) {
+			throw new AppException(e.getMessage());
+		} finally {
+			try {
+				conexion.closeResources(conexion.getConexion(), rs, null, cstmt, null);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return listaTema;
 	}
 }

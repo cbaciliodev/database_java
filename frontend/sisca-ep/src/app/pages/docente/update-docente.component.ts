@@ -14,7 +14,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class UpdateDocenteComponent implements OnInit {
 
   public _cargo = new Cargo(null, '');
-  public docente = new Docente(null, '', '', '', this._cargo);
+  public _docente = new Docente(null, '', '', '', this._cargo);
+
   public _lista_cargos: Cargo[];
   actualizar = false;
   _habilitar = true;
@@ -24,31 +25,37 @@ export class UpdateDocenteComponent implements OnInit {
     public _router: Router,
     public _activateRouter: ActivatedRoute) {
 
-      _activateRouter.params.subscribe(params => {
-        let id = params['id'];
-        if (id !== 'nuevo') {
-          console.log(id);
-          this.actualizar = true;
-          this.cargarDocente(id);
-        }
-      })
 
-     }
+    console.log(this._docente, ' docente')
+    _activateRouter.params.subscribe(params => {
+      let id = params['id'];
+      if (id !== 'nuevo') {
+        console.log(id);
+        this.actualizar = true;
+        this.cargarDocente(id);
+      }
+    })
+
+  }
 
   ngOnInit() {
     this.cargarListaCargo();
   }
 
+
+  valor(s: any) {
+    console.log(s.target.value, ' valor')
+  }
   cargarDocente(id: number) {
+
     this._serviceCargo.findOneDocenteById(id)
       .subscribe(docente => {
-        this.docente = docente
-        console.log(docente);
+        this._docente = docente
+        console.log(docente.cargo.vdesc_CARGO);
       })
   };
 
   cargarListaCargo() {
-    this._lista_cargos = [];
     this._serviceCargo.findAllCargos()
       .subscribe(cargo => {
         this._lista_cargos = cargo
@@ -65,20 +72,20 @@ export class UpdateDocenteComponent implements OnInit {
 
     if (s == 'create') {
 
-      this._serviceCargo.createDocente(this.docente)
+      this._serviceCargo.createDocente(this._docente)
         .subscribe(data => {
           swal(`Docente Creado`, `${data.mensaje}`, `success`)
           this._router.navigate(['/docente'])
         });
     }
 
-      if (s == 'update') {
-      this._serviceCargo.updateDocente(this.docente, this.docente.icod_DOCENTE)
+    if (s == 'update') {
+      this._serviceCargo.updateDocente(this._docente, this._docente.icod_DOCENTE)
         .subscribe(data => {
           swal(`Docente Actualizado`, `${data.mensaje}`, `success`)
           this._router.navigate(['/docente'])
         });
-    } 
+    }
   }
 
 }

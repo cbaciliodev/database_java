@@ -1,33 +1,64 @@
 <div class="wrapper fadeInDown">
-    <div id="formContent">
-        <!-- Tabs Titles -->
+  <div id="formContent">
+    <!-- Tabs Titles -->
 
-        <!-- Icon -->
-        <div class="fadeIn first">
-            <!-- <img src="https://www.enriquedans.com/wp-content/uploads/2018/04/Cloud.jpg" id="icon" alt="User Icon" /> -->
-            <img src="../../assets/images/baner_form.png" alt="" class="md-card-image" style="width: 100%">
-            <h2> <span class="center-text text-dark">PROYECTO</span> </h2>
-        </div>
-
-        <!-- Login Form -->
-        <form (ngSubmit)="ingresar()">
-
-            <input type="text" id="login" class="fadeIn second" name="login" placeholder="usuario" autofocus required>
-            <input type="password" id="password" class="fadeIn third" name="login" placeholder="contraseña" required>
-            <input type="submit" class="fadeIn fourth" value="Iniciar sesión">
-
-        </form>
-
-        <div class="form-group m-b-0 text-center">
-            <div class="col-sm-12 text-center">
-                <p>No tienes una cuenta? <a href="pages-login-2.html" class="text-info m-l-5"><b>Crear Cuenta</b></a></p>
-            </div>
-        </div>
-
-        <!-- Remind Passowrd -->
-        <div id="formFooter">
-            <a class="underlineHover"><small>Copyright&copy; 2019 - CINFE - DESI</small></a>
-        </div>
-
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <!-- <img src="https://www.enriquedans.com/wp-content/uploads/2018/04/Cloud.jpg" id="icon" alt="User Icon" /> -->
+      <img
+        src="../../assets/images/urp/encabezado.jfif"
+        alt=""
+        class="md-card-image"
+        style="width: 100%"
+      />
+      <h2><span class="center-text text-dark">REUNIÓN DE PROFESORES</span></h2>
     </div>
+
+    <!-- Login Form -->
+    <form (ngSubmit)="ingresar()" style="height: 10%;">
+      <div class="form-group col-sm-12 col-xs-12 col-lg-12">
+        <input
+          type="text"
+          id="login"
+          class="fadeIn second"
+          name="login"
+          placeholder="usuario"
+          autofocus
+          required
+        />
+      </div>
+      <div class="form-group col-sm-12 col-xs-12 col-lg-12">
+        <input
+          type="password"
+          id="password"
+          class="fadeIn third"
+          name="login"
+          placeholder="contraseña"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <input type="submit" class="fadeIn fourth" value="Iniciar sesión" />
+      </div>
+    </form>
+
+        <!-- <div class="form-group m-b-0 text-center">
+        <div class="col-sm-12 text-center">
+            <p>
+            No tienes una cuenta?
+            <a href="pages-login-2.html" class="text-info m-l-5"
+                ><b>Crear Cuenta</b></a
+            >
+            </p>
+        </div>
+        </div> -->
+
+    <!-- Remind Passowrd -->
+   <!--  <div id="formFooter">
+      <a class="underlineHover"
+        ><small>Copyright&copy; 2019 - CINFE - DESI</small></a
+      >
+    </div> -->
+  </div>
 </div>

@@ -41,4 +41,9 @@ public class TemaServiceImpl implements TemaService {
 		return temaDao.deleteTema(id);
 	}
 
+	@Override
+	public List<Tema> getListaTemasById(Integer id) throws AppException {
+		return temaDao.getListaTemasById(id);
+	}
+
 }

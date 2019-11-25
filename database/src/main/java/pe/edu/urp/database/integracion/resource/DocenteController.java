@@ -23,7 +23,7 @@ import pe.edu.urp.database.core.interfaces.DocenteService;
 import pe.edu.urp.database.core.negocio.bean.Docente;
 import pe.edu.urp.database.core.util.AppException;
 
-@CrossOrigin(origins = { "http://localhost:4200", "*" })
+@CrossOrigin(origins = { "http://192.168.42.191:4200", "*" })
 @RestController
 public class DocenteController {
 

@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" style="color: black;">
   <div class="card-body collapse show">
     <div class="tab-content">
       <ul class="nav nav-tabs" role="tablist">
@@ -22,7 +22,7 @@
                     <div class="form-group  col-xs-12 col-md-12 col-lg-12">
                       <input
                         id="vnombre_DOCENTE"
-                        [(ngModel)]="docente.vnombre_DOCENTE"
+                        [(ngModel)]="_docente.vnombre_DOCENTE"
                         name="vnombre_DOCENTE"
                         type="text"
                         class="form-control"
@@ -53,7 +53,7 @@
                     <div class="form-group  col-xs-12 col-md-12 col-lg-12">
                       <input
                         id="vapaterno_DOCENTE"
-                        [(ngModel)]="docente.vapaterno_DOCENTE"
+                        [(ngModel)]="_docente.vapaterno_DOCENTE"
                         name="vapaterno_DOCENTE"
                         type="text"
                         class="form-control"
@@ -84,7 +84,7 @@
                     <div class="form-group  col-xs-12 col-md-12 col-lg-12">
                       <input
                         id="vamaterno_DOCENTE"
-                        [(ngModel)]="docente.vamaterno_DOCENTE"
+                        [(ngModel)]="_docente.vamaterno_DOCENTE"
                         name="vamaterno_DOCENTE"
                         type="text"
                         class="form-control"
@@ -110,29 +110,34 @@
                 </div>
                 <div class="row col-xs-12 col-md-12 col-lg-12">
                   <div class="form-group  col-xs-12 col-md-12 col-lg-12">
-                    <label for="cargo" class="control-label"
+                    <label for="vdesc_CARGO" class="control-label"
                       >Cargo del Docente:
                     </label>
 
                     <div class="form-group  col-xs-12 col-md-12 col-lg-12">
                       <select
-                        id="cargo"
-                        [(ngModel)]="docente.cargo.icod_CARGO"
-                        name="cargo"
+                        (change)="valor($event)"
+                        id="vdesc_CARGO"
+                        [(ngModel)]="_docente.cargo.vdesc_CARGO"
+                        name="vdesc_CARGO"
                         class="form-control"
-                        #cargo="ngModel"
+                        #vdesc_CARGO="ngModel"
                         [ngClass]="{
-                          'is-invalid': f.submitted && cargo.invalid
+                          'is-invalid': f.submitted && vdesc_CARGO.invalid
                         }"
+                        
                         required
                       >
-                      <option value="0" >Seleccione</option>
-                      <option [value]="item.icod_CARGO" *ngFor="let item of _lista_cargos">{{item.vdesc_CARGO}}</option>
-                      
-                    </select>
+                        <option value="_docente.cargo.vdesc_CARGO">Seleccione</option>
+                        <!-- <option
+                          [value]="item.icod_CARGO"
+                          *ngFor="let item of _lista_cargos"
+                          >{{ item.vdesc_CARGO }}</option
+                        > -->
+                      </select>
                       <div
                         class="pt-1 text-danger"
-                        *ngIf="f.submitted && cargo.invalid"
+                        *ngIf="f.submitted && vdesc_CARGO.invalid"
                         class="invalid-feedback"
                       >
                         <span class="form-control-feedback">

@@ -5,16 +5,11 @@ import { PagesComponent } from './pages.component';
 import { SharedModule } from '../shared/shared.module';
 import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 
-
-
 //formModule:
-
 import { FormsModule } from '@angular/forms';
 
 //Routes
 import { PagesRoutes } from './pages.routes';
-
-
 
 //graficas
 import { ChartsModule } from 'ng2-charts';
@@ -26,6 +21,7 @@ import { UpdateDocenteComponent } from './docente/update-docente.component';
 import { ActividadesComponent } from './actividades/actividades.component';
 import { ActividadUpdateComponent } from './actividades/actividad-update.component';
 import { TemaComponent } from './tema/tema.component';
+import { UpdateTemaComponent } from './tema/update-tema.component';
 
 
 @NgModule({
@@ -39,7 +35,8 @@ import { TemaComponent } from './tema/tema.component';
     UpdateDocenteComponent,
     ActividadesComponent,
     ActividadUpdateComponent,
-    TemaComponent
+    TemaComponent,
+    UpdateTemaComponent
   ],
   imports: [
     CommonModule,

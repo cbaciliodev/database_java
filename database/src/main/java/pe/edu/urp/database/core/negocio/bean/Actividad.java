@@ -13,6 +13,16 @@ public class Actividad {
 	}
 	
 	
+	
+
+	public Actividad(Integer iCOD_ACTIVIDAD, String vDESC_ACTIVIDAD) {
+		super();
+		ICOD_ACTIVIDAD = iCOD_ACTIVIDAD;
+		VDESC_ACTIVIDAD = vDESC_ACTIVIDAD;
+	}
+
+
+
 
 	public Actividad(String vDESC_ACTIVIDAD) {
 		super();

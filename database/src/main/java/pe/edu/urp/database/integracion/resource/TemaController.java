@@ -23,7 +23,7 @@ import pe.edu.urp.database.core.interfaces.TemaService;
 import pe.edu.urp.database.core.negocio.bean.Tema;
 import pe.edu.urp.database.core.util.AppException;
 
-@CrossOrigin(origins = { "http://localhost:4200", "*" })
+@CrossOrigin(origins = { "http://192.168.42.191:4200", "*" })
 @RestController
 public class TemaController {
 
@@ -31,7 +31,7 @@ public class TemaController {
 	private TemaService temaService;
 
 	@RequestMapping(value = "/tema", method = RequestMethod.GET)
-	public List<Tema> getListatema(HttpServletResponse response, HttpServletRequest request) {
+	public List<Tema> getListaTema(HttpServletResponse response, HttpServletRequest request) {
 
 		List<Tema> lista = new ArrayList<Tema>();
 
@@ -49,13 +49,33 @@ public class TemaController {
 		return lista;
 	}
 
+	@RequestMapping(value = "/temas/{id}", method = RequestMethod.GET)
+	public List<Tema> getListaTemaById(@PathVariable Integer id, HttpServletResponse response,
+			HttpServletRequest request) {
+
+		List<Tema> lista = new ArrayList<Tema>();
+
+		try {
+
+			lista = temaService.getListaTemasById(id);
+			if (lista == null || lista.isEmpty()) {
+				return null;
+			}
+
+		} catch (AppException e) {
+			e.printStackTrace();
+		}
+
+		return lista;
+	}
+
 	@RequestMapping(value = "/tema", method = RequestMethod.POST)
 	public ResponseEntity<?> createtema(@RequestBody Tema tema, HttpServletResponse response,
 			HttpServletRequest request) {
 
 		Map<String, Object> objetResponse = new HashMap<String, Object>();
 		String newtema = "";
-		
+
 		try {
 			newtema = temaService.createTema(tema);
 
@@ -66,7 +86,7 @@ public class TemaController {
 			return new ResponseEntity<Map<String, Object>>(objetResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 
 		} catch (AppException e) {
-			objetResponse.put("mensaje", "Error al realizar la busqueda en la base de datos");
+			objetResponse.put("mensaje", "Error al realizar la registar en la base de datos");
 			objetResponse.put("error", e.getMessage().concat(": ").concat(e.getLocalizedMessage()));
 			return new ResponseEntity<Map<String, Object>>(objetResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -110,8 +130,8 @@ public class TemaController {
 	}
 
 	@RequestMapping(value = "/tema/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<?> updatetema(@RequestBody Tema tema, @PathVariable Integer id,
-			HttpServletResponse response, HttpServletRequest request) {
+	public ResponseEntity<?> updatetema(@RequestBody Tema tema, @PathVariable Integer id, HttpServletResponse response,
+			HttpServletRequest request) {
 
 		Map<String, Object> objetResponse = new HashMap<String, Object>();
 		String newtema = null;
@@ -138,7 +158,8 @@ public class TemaController {
 		}
 
 		try {
-			tema.setICOD_TEMA(id);;
+			tema.setICOD_TEMA(id);
+			;
 			newtema = temaService.updateTema(tema);
 		} catch (AppException e) {
 			objetResponse.put("mensaje", "error al realizar el registro a la base de datos.");

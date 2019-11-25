@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Cargo } from 'src/app/models/cargo.model';
 import { CargoService } from 'src/app/services/service.index';
 import swal from 'sweetalert';
-import { Docente } from 'src/app/models/docente.model';
 
 
 @Component({

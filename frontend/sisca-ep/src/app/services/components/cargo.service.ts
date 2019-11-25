@@ -7,6 +7,7 @@ import { Cargo } from 'src/app/models/cargo.model';
 import swal from 'sweetalert';
 import { Docente } from 'src/app/models/docente.model';
 import { Actividad } from 'src/app/models/actividad.model';
+import { Tema } from 'src/app/models/tema.model';
 
 @Injectable({
   providedIn: 'root'
@@ -166,6 +167,68 @@ export class CargoService {
 
   deleteActividadById(id: number): Observable<any> {
     let url = env.API_URI.concat('actividad/' + `${id}`);
+
+    return this._httpClient.delete<any>(url)
+      .pipe(catchError(e => {
+        return throwError(e)
+      }));
+  }
+
+  /**
+    * TEMAS
+    */
+  findAllTemas(): Observable<any> {
+
+    let url = env.API_URI.concat('tema');
+    return this._httpClient.get<any>(url)
+      .pipe(catchError(e => throwError(e)));
+  }
+
+  createTemas(tema: Tema): Observable<any> {
+
+    let url = env.API_URI.concat('tema');
+
+    return this._httpClient.post<any>(url, tema)
+      .pipe(catchError(e => {
+        //swal(`El Correo ya existe`, `${e.error.mensaje.errors.correo.message}`, `error`)
+        return throwError(e)
+      }));
+  }
+
+
+  updateTemas(tema: Tema, id: number): Observable<any> {
+
+    let url = env.API_URI.concat('tema/' + `${id}`);
+
+    return this._httpClient.put<any>(url, tema)
+      .pipe(catchError(e => {
+        //swal(`El Correo ya existe`, `${e.error.mensaje.errors.correo.message}`, `error`)
+        return throwError(e)
+      }));
+  }
+
+  findOneTemasById(id: number): Observable<any> {
+
+    let url = env.API_URI.concat('temas/' + `${id}`);
+
+    return this._httpClient.get<any>(url)
+      .pipe(catchError(e => {
+        return throwError(e)
+      }));
+  }
+
+  findOneTemaById(id: number): Observable<any> {
+
+    let url = env.API_URI.concat('tema/' + `${id}`);
+
+    return this._httpClient.get<any>(url)
+      .pipe(catchError(e => {
+        return throwError(e)
+      }));
+  }
+
+  deleteTemaById(id: number): Observable<any> {
+    let url = env.API_URI.concat('tema/' + `${id}`);
 
     return this._httpClient.delete<any>(url)
       .pipe(catchError(e => {

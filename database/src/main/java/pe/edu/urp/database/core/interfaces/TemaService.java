@@ -6,8 +6,10 @@ import pe.edu.urp.database.core.negocio.bean.Tema;
 import pe.edu.urp.database.core.util.AppException;
 
 public interface TemaService {
-	
+
 	public List<Tema> getListaTemas() throws AppException;
+
+	public List<Tema> getListaTemasById(Integer id) throws AppException;
 
 	public String createTema(Tema tema) throws AppException;
 

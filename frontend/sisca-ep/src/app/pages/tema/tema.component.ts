@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import swal from 'sweetalert'
-import { Docente } from 'src/app/models/docente.model';
+import { Tema } from 'src/app/models/tema.model';
 import { CargoService } from 'src/app/services/service.index';
-import { Router, ActivatedRoute } from '@angular/router';
-
+import { Router } from '@angular/router';
+import swal from 'sweetalert'
+import { Actividad } from 'src/app/models/actividad.model';
 
 @Component({
-  selector: 'app-docente',
-  templateUrl: './docente.component.html',
-  styleUrls: ['./docente.component.css']
+  selector: 'app-tema',
+  templateUrl: './tema.component.html',
+  styleUrls: ['./tema.component.css']
 })
-export class DocenteComponent implements OnInit {
+export class TemaComponent implements OnInit {
 
-  public _listaDocente: Docente[];
+  public _listaTemas: Tema[];
+  public _listaActividad: Actividad[];
   public cantidad: number;
   public p: number = 1;
   public paginador: any;
@@ -22,25 +23,46 @@ export class DocenteComponent implements OnInit {
   _check = false;
 
   constructor(public _serviceCargo: CargoService,
-    public _router: Router,
-    public _activateRouter: ActivatedRoute) {
+    public _router: Router) {
+    this._listaTemas = [];
+    this._listaActividad = [];
   }
 
   ngOnInit() {
-    this.findAllDocentes();
+    this.findAllActividad();
   }
 
-
-  findAllDocentes() {
-
-    this._listaDocente = [];
-    this._serviceCargo.findAllDocentes()
+  findAllActividad() {
+    this._serviceCargo.findAllActividades()
       .subscribe(res => {
-        this._listaDocente = res;
-        console.log(this._listaDocente);
+        this._listaActividad = res;
+        console.log(this._listaActividad);
       })
   }
-  deleteDocente(id: number) {
+
+  cambiarListaTemas(e: number) {
+    if (e == 0) {
+      this._listaTemas = [];
+    }
+    else {
+      this.findAllTemasById(e);
+    }
+  }
+
+  findAllTemasById(id: number) {
+
+    this._serviceCargo.findOneTemasById(id)
+      .subscribe(res => {
+        this._listaTemas = res;
+        if (this._listaTemas == null) {
+          this._listaTemas = [];
+          return;
+        }
+        console.log(this._listaTemas);
+      })
+  }
+
+  deleteTema(id: number) {
 
     swal(`Una vez eliminado, no podrás recuperar este registro!`, {
       title: `Estas seguro?`,
@@ -50,7 +72,7 @@ export class DocenteComponent implements OnInit {
     })
       .then((willDelete) => {
         if (willDelete) {
-          this._serviceCargo.deleteDocenteById(id)
+          this._serviceCargo.deleteTemaById(id)
             .subscribe(data => {
 
               if (data.mensaje == `The DELETE statement conflicted with the REFERENCE constraint "FK__TBL_REUNI__FK_IC__3E52440B". The conflict occurred in database "REUNION", table "dbo.TBL_REUNIONES", column 'FK_ICOD_DOCENTE'.`) {
@@ -62,7 +84,6 @@ export class DocenteComponent implements OnInit {
                   icon: `success`,
                 });
               }
-              this.findAllDocentes();
             });
 
         } else {
