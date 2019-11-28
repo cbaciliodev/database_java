@@ -2,3 +2,4 @@
 /*.zip
 /frontend/sisca-ep/node_modules/*
 /frontend/sisca-ep/*.json
+/frontend/sisca-ep/package-lock.json
