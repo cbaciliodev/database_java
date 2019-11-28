@@ -24,6 +24,9 @@ import { TemaComponent } from './tema/tema.component';
 import { UpdateTemaComponent } from './tema/update-tema.component';
 import { ReunionComponent } from './reunion/reunion.component';
 import { AsignacionesTemasComponent } from './reunion/asignaciones-temas.component';
+import { AsistenciaComponent } from './asistencia/asistencia.component';
+import { CreateReunionComponent } from './reunion/create-reunion.component';
+import { FormularioReunionComponent } from './reunion/formulario-reunion.component';
 
 
 @NgModule({
@@ -40,7 +43,10 @@ import { AsignacionesTemasComponent } from './reunion/asignaciones-temas.compone
     TemaComponent,
     UpdateTemaComponent,
     ReunionComponent,
-    AsignacionesTemasComponent
+    AsignacionesTemasComponent,
+    AsistenciaComponent,
+    CreateReunionComponent,
+    FormularioReunionComponent
   ],
   imports: [
     CommonModule,

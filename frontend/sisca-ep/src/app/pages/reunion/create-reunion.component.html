@@ -4,12 +4,12 @@
       <div class="card">
         <div class="card-body">
           <a
-            [routerLink]="['/updateDocente', 'nuevo']"
+            [routerLink]="['/createReunion', 'nuevo']"
             routerLinkActive="router-link-active"
             class="btn waves-effect waves-light btn-xs btn-success text-dark mb-2"
             style="font-size: 15px;"
             ><i class="mdi mdi-account" style="font-size: 15px;"></i> Registar
-            Docentes </a
+            Reunion </a
           ><br />
           <!-- Nav tabs -->
           <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -22,7 +22,7 @@
                 role="tab"
                 aria-controls="home"
                 aria-selected="true"
-                ><span><i class="ti-book"></i> Lista de Docentes</span></a
+                ><span><i class="ti-book"></i> Lista de Reuniones</span></a
               >
             </li>
           </ul>
@@ -37,7 +37,7 @@
                 <div class="table-responsive">
                   <div
                     class="alert alert-info"
-                    *ngIf="_listaDocente.length == 0"
+                    *ngIf="_listaReuniones.length == 0"
                   >
                     <button
                       type="button"
@@ -55,35 +55,43 @@
                   </div>
                   <table
                     class="table table-hover table-striped color-bordered-table muted-bordered-table"
-                    *ngIf="_listaDocente.length > 0"
+                    *ngIf="_listaReuniones.length > 0"
                   >
                     <thead class="thead-light">
                       <tr>
                         <th class="text-center">#</th>
                         <th class="text-center">Codigo</th>
-                        <th class="text-center">Dni</th>
-                        <th class="text-center">Nombre</th>
-                        <th class="text-center">Apellido Paterno</th>
-                        <th class="text-center">Apellido Materno</th>
-                        <th class="text-center">Cargo</th>
-                        <th class="text-center" colspan="2">Acci&oacute;n</th>
+                        <th class="text-center">Fecha</th>
+                        <th class="text-center">Hora de Inicio</th>
+                        <th class="text-center">Hora de Termino</th>
+                        <th class="text-center">Lugar</th>
+                        <th class="text-center">Observaciones</th>
+                        <th class="text-center" colspan="3">Acci&oacute;n</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr
                         *ngFor="
-                          let item of _listaDocente
+                          let item of _listaReuniones
                             | paginate: { itemsPerPage: 6, currentPage: p };
                           let i = index
                         "
                       >
                         <td class="text-center">{{ i + 1 }}</td>
-                        <td>{{ "D0-" + item.icod_DOCENTE }}</td>
-                        <td>{{ item.vdni_DOCENTE }}</td>
-                        <td>{{ item.vnombre_DOCENTE }}</td>
-                        <td>{{ item.vapaterno_DOCENTE }}</td>
-                        <td>{{ item.vamaterno_DOCENTE }}</td>
-                        <td>{{ item.cargo.vdesc_CARGO }}</td>
+                        <td class="text-justify">
+                          {{ "D0-" + item.icod_REUNION }}
+                        </td>
+                        <td class="text-justify" style="width: 120px;">
+                          {{ item.dfec_REUNION | date: "dd-MM-yyyy" }}
+                        </td>
+                        <td class="text-justify" style="width: 90px;">
+                          {{ item.dhent_REUNION | date: "h:mm a" }}
+                        </td>
+                        <td class="text-justify">
+                          {{ item.dhsal_REUNION | date: "h:mm a" }}
+                        </td>
+                        <td class="text-justify">{{ item.vlugar_REUNION }}</td>
+                        <td class="text-center"><i class="ti-book"></i></td>
                         <td class="text-center">
                           <button
                             class="btn waves-effect waves-light btn-xs btn-warning"
@@ -94,7 +102,14 @@
                         </td>
                         <td class="text-center">
                           <button
-                          (click)="deleteDocente(item.icod_DOCENTE)"
+                            [routerLink]="['/asistencia', item.icod_REUNION]"
+                            class="btn waves-effect waves-light btn-xs btn-primary"
+                          >
+                            <i class="fa fa-trash"></i> Asistencia
+                          </button>
+                        </td>
+                        <td class="text-center">
+                          <button
                             class="btn waves-effect waves-light btn-xs btn-danger"
                           >
                             <i class="fa fa-trash"></i> Eliminar
@@ -104,10 +119,10 @@
                     </tbody>
                   </table>
                   <pagination-controls
-                  class="bg-danger"
-                  *ngIf="_listaDocente.length != 0"
-                  (pageChange)="p = $event"
-                ></pagination-controls>
+                    class="bg-danger"
+                    *ngIf="_listaReuniones.length != 0"
+                    (pageChange)="p = $event"
+                  ></pagination-controls>
                 </div>
               </div>
             </div>

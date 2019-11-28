@@ -50,6 +50,7 @@ public class DocenteDaoImpl implements DocenteDao {
 				docente.setVAPATERNO_DOCENTE(rs.getString(3));
 				docente.setVAMATERNO_DOCENTE(rs.getString(4));
 				docente.setCargo(new Cargo(rs.getString(5)));
+				docente.setVDNI_DOCENTE(rs.getString(6));
 				listaDocente.add(docente);
 				docente = null;
 
@@ -77,17 +78,18 @@ public class DocenteDaoImpl implements DocenteDao {
 
 		}
 
-		String query = "{call SP_INSERTAR_DOCENTES(?,?,?,?)}";
+		String query = "{call SP_INSERTAR_DOCENTES(?,?,?,?,?)}";
 
 		try {
 			conexion.getConexion().setAutoCommit(false);
 			cstmt = conexion.getConexion().prepareCall(query);
-			
+
 			cstmt.setString("VNOMBRE_DOCENTE", docente.getVNOMBRE_DOCENTE());
 			cstmt.setString("VAPATERNO_DOCENTE", docente.getVAPATERNO_DOCENTE());
 			cstmt.setString("VAMATERNO_DOCENTE", docente.getVAMATERNO_DOCENTE());
 			cstmt.setInt("FK_ICOD_CARGO", docente.getCargo().getICOD_CARGO());
-			
+			cstmt.setString("VDNI_DOCENTE", docente.getVDNI_DOCENTE());
+
 			int rest = cstmt.executeUpdate();
 
 			if (rest == 1) {
@@ -136,7 +138,8 @@ public class DocenteDaoImpl implements DocenteDao {
 				docente.setVNOMBRE_DOCENTE(rs.getString(2));
 				docente.setVAPATERNO_DOCENTE(rs.getString(3));
 				docente.setVAMATERNO_DOCENTE(rs.getString(4));
-				docente.setCargo(new Cargo(rs.getInt(5),rs.getString(6)));
+				docente.setCargo(new Cargo(rs.getInt(5), rs.getString(6)));
+				docente.setVDNI_DOCENTE(rs.getString(7));
 			}
 
 			conexion.getConexion().commit();
@@ -157,7 +160,6 @@ public class DocenteDaoImpl implements DocenteDao {
 	@Override
 	public String updateDocente(Docente docente) throws AppException {
 
-	
 		try {
 			conexion = new Conexion();
 
@@ -165,7 +167,7 @@ public class DocenteDaoImpl implements DocenteDao {
 
 		}
 
-		String query = "{call SP_UPDATE_DOCENTE(?,?,?,?,?)}";
+		String query = "{call SP_UPDATE_DOCENTE(?,?,?,?,?,?)}";
 
 		try {
 			conexion.getConexion().setAutoCommit(false);
@@ -175,6 +177,7 @@ public class DocenteDaoImpl implements DocenteDao {
 			cstmt.setString("VAPATERNO_DOCENTE", docente.getVAPATERNO_DOCENTE());
 			cstmt.setString("VAMATERNO_DOCENTE", docente.getVAMATERNO_DOCENTE());
 			cstmt.setInt("FK_ICOD_CARGO", docente.getCargo().getICOD_CARGO());
+			cstmt.setString("VDNI_DOCENTE", docente.getVDNI_DOCENTE());
 
 			int rest = cstmt.executeUpdate();
 

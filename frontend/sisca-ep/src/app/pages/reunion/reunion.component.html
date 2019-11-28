@@ -1,0 +1,198 @@
+<div class="card" style="color: black;">
+  <div class="card-body collapse show">
+    <a
+      [routerLink]="['/listaReunion']"
+      routerLinkActive="router-link-active"
+      class="btn waves-effect waves-light btn-xs btn-success text-dark mb-2"
+      style="font-size: 15px;"
+      ><i class="mdi mdi-account" style="font-size: 15px;"></i> Lista de
+      Reuniones
+    </a>
+    <div class="tab-content">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#home8" role="tab"
+            ><span><i class="ti-user"></i> Registro </span></a
+          >
+        </li>
+      </ul>
+      <div class="tab-content tabcontent-border">
+        <div class="tab-pane active" id="home8" role="tabpanel">
+          <div class="p-20">
+            <div class="tab-pane fade show active">
+              <form #f="ngForm">
+                <div class="row col-xs-12 col-md-12 col-lg-12">
+                  <div class="form-group  col-xs-12 col-md-12 col-lg-12">
+                    <label for="icod_ACTIVIDAD" class="control-label"
+                      >Lista de Actividades:
+                    </label>
+
+                    <div class="form-group  col-xs-12 col-md-12 col-lg-12">
+                      <select
+                        (change)="valor($event)"
+                        id="icod_ACTIVIDAD"
+                        [(ngModel)]="_actividad.vdesc_ACTIVIDAD"
+                        name="icod_ACTIVIDAD"
+                        class="form-control"
+                        #icod_ACTIVIDAD="ngModel"
+                        [ngClass]="{
+                          'is-invalid': f.submitted && icod_ACTIVIDAD.invalid
+                        }"
+                        required
+                      >
+                        <option value="">Seleccione</option>
+                        <option
+                          [value]="item.icod_ACTIVIDAD"
+                          *ngFor="let item of _listaActividad"
+                          >{{ item.vdesc_ACTIVIDAD }}</option
+                        >
+                      </select>
+                      <div
+                        class="pt-1 text-danger"
+                        *ngIf="f.submitted && icod_ACTIVIDAD.invalid"
+                        class="invalid-feedback"
+                      >
+                        <span class="form-control-feedback">
+                          <i class="fa fa-times-circle-o"></i> Este campo es
+                          <strong>requerido.</strong>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row col-xs-12 col-md-12 col-lg-12">
+                  <div class="form-group  col-xs-12 col-md-12 col-lg-12">
+                    <label for="icod_TEMA" class="control-label"
+                      >Lista de Temas:
+                    </label>
+
+                    <div class="form-group  col-xs-12 col-md-12 col-lg-12">
+                      <select
+                        (change)="limpiarDocente($event)"
+                        id="icod_TEMA"
+                        [(ngModel)]="_tema.vdesc_TEMA"
+                        name="icod_TEMA"
+                        class="form-control"
+                        #icod_TEMA="ngModel"
+                        [ngClass]="{
+                          'is-invalid': f.submitted && icod_TEMA.invalid
+                        }"
+                        required
+                      >
+                        <option value="">Seleccione</option>
+                        <option
+                          [value]="item.icod_TEMA"
+                          *ngFor="let item of _listaTemas"
+                          >{{ item.vdesc_TEMA }}</option
+                        >
+                      </select>
+                      <div
+                        class="pt-1 text-danger"
+                        *ngIf="f.submitted && icod_TEMA.invalid"
+                        class="invalid-feedback"
+                      >
+                        <span class="form-control-feedback">
+                          <i class="fa fa-times-circle-o"></i> Este campo es
+                          <strong>requerido.</strong>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row col-xs-12 col-md-12 col-lg-12">
+                  <div class="form-group  col-xs-8 col-md-8 col-lg-8">
+                    <label for="icod_DOCENTE" class="control-label"
+                      >Asignar Tema a Docente:
+                    </label>
+
+                    <div class="form-group  col-xs-12 col-md-12 col-lg-12">
+                      <select
+                        id="icod_DOCENTE"
+                        [(ngModel)]="_docente.vnombre_DOCENTE"
+                        name="icod_DOCENTE"
+                        class="form-control"
+                        #icod_DOCENTE="ngModel"
+                        [ngClass]="{
+                          'is-invalid': f.submitted && icod_DOCENTE.invalid
+                        }"
+                        required
+                      >
+                        <option value="">Seleccione</option>
+                        <option
+                          [value]="item.icod_DOCENTE"
+                          *ngFor="let item of _listaDocente"
+                          >{{ item.vnombre_DOCENTE }}
+                          {{ item.vapaterno_DOCENTE }}
+                          {{ item.vamaterno_DOCENTE }}</option
+                        >
+                      </select>
+                      <div
+                        class="pt-1 text-danger"
+                        *ngIf="f.submitted && icod_DOCENTE.invalid"
+                        class="invalid-feedback"
+                      >
+                        <span class="form-control-feedback">
+                          <i class="fa fa-times-circle-o"></i> Este campo es
+                          <strong>requerido.</strong>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group  col-xs-4 col-md-4 col-lg-4">
+                    <label for="dfec_ACTIVIDAD" class="control-label"
+                      >Fecha de la Actividad:
+                    </label>
+
+                    <div class="form-group  col-xs-12 col-md-12 col-lg-12">
+                      <input
+                        id="dfec_ACTIVIDAD"
+                        [(ngModel)]="_actividad.dfec_ACTIVIDAD"
+                        name="dfec_ACTIVIDAD"
+                        type="date"
+                        class="form-control"
+                        #dfec_ACTIVIDAD="ngModel"
+                        [ngClass]="{
+                          'is-invalid': f.submitted && dfec_ACTIVIDAD.invalid
+                        }"
+                        required
+                      />
+                      <div
+                        class="pt-1 text-danger"
+                        *ngIf="f.submitted && dfec_ACTIVIDAD.invalid"
+                        class="invalid-feedback"
+                      >
+                        <span class="form-control-feedback">
+                          <i class="fa fa-times-circle-o"></i> Este campo es
+                          <strong>requerido.</strong>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  *ngIf="!actualizar; else boton"
+                  class="btn btn-info form-group "
+                  type="submit"
+                  (click)="guardarDocente(f, 'create')"
+                >
+                  Asignar
+                </button>
+                <ng-template #boton>
+                  <button
+                    class="btn btn-success form-group"
+                    (click)="guardarDocente(f, 'update')"
+                  >
+                    Actualizar
+                  </button>
+                </ng-template>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

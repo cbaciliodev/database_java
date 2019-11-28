@@ -9,6 +9,7 @@ import { Docente } from 'src/app/models/docente.model';
 import { Actividad } from 'src/app/models/actividad.model';
 import { Tema } from 'src/app/models/tema.model';
 import { Asignado } from 'src/app/models/asignado.model';
+import { Reunion } from 'src/app/models/reunion.model';
 
 @Injectable({
   providedIn: 'root'
@@ -253,4 +254,40 @@ export class CargoService {
       }));
   }
 
+  findAllAsignacion(): Observable<any> {
+
+    let url = env.API_URI.concat('asignado');
+    return this._httpClient.get<any>(url)
+      .pipe(catchError(e => throwError(e)));
+  }
+
+  deleteAsignacion(idt: number, idd: number): Observable<any> {
+    let url = env.API_URI.concat('asignado/tema/' + `${idt}` + '/docente/' + `${idd}`);
+
+    return this._httpClient.delete<any>(url)
+      .pipe(catchError(e => {
+        return throwError(e)
+      }));
+  }
+
+  /*
+  REUNIONES
+   */
+
+  createReunion(reunion: Reunion): Observable<any> {
+
+    let url = env.API_URI.concat('reunion');
+
+    return this._httpClient.post<any>(url, reunion)
+      .pipe(catchError(e => {
+        return throwError(e)
+      }));
+  }
+
+  findAllReunionesDocentes(): Observable<any> {
+
+    let url = env.API_URI.concat('reunion');
+    return this._httpClient.get<any>(url)
+      .pipe(catchError(e => throwError(e)));
+  }
 }

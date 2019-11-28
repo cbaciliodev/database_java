@@ -81,7 +81,6 @@ export class UpdateTemaComponent implements OnInit {
         });
     }
 
-    console.log(this._tema.actividad.icod_ACTIVIDAD)
 
     if (s == 'update') {
       this._serviceCargo.updateTemas(this._tema, this._tema.icod_TEMA)

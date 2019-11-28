@@ -16,7 +16,10 @@ export class ActividadesComponent implements OnInit {
 
   public _listaActividad: Actividad[];
 
-  constructor(public _serviceCargo: CargoService) { }
+  constructor(public _serviceCargo: CargoService) {
+
+    this._listaActividad = [];
+  }
 
   ngOnInit() {
 
@@ -25,9 +28,12 @@ export class ActividadesComponent implements OnInit {
 
   findAllActividad() {
 
-    this._listaActividad = [];
     this._serviceCargo.findAllActividades()
       .subscribe(res => {
+        if (res == null) {
+          this._listaActividad = [];
+          return;
+        }
         this._listaActividad = res;
       })
   }

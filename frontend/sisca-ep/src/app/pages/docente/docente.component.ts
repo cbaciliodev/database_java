@@ -36,6 +36,10 @@ export class DocenteComponent implements OnInit {
     this._listaDocente = [];
     this._serviceCargo.findAllDocentes()
       .subscribe(res => {
+        if(res == null){
+          this._listaDocente = [];
+          return;
+        }
         this._listaDocente = res;
       })
   }

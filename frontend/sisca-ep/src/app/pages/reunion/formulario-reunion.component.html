@@ -13,62 +13,29 @@
           <div class="p-20">
             <div class="tab-pane fade show active">
               <form #f="ngForm">
-                  <div class="row col-xs-12 col-md-12 col-lg-12">
-                      <div class="form-group  col-xs-4 col-md-4 col-lg-4">
-                          <label for="vdni_DOCENTE" class="control-label"
-                            >Dni del Docente:
-                          </label>
-      
-                          <div class="form-group  col-xs-12 col-md-12 col-lg-12">
-                            <input
-                              id="vdni_DOCENTE"
-                              [(ngModel)]="_docente.vdni_DOCENTE"
-                              name="vdni_DOCENTE"
-                              type="text"
-                              class="form-control"
-                              placeholder="dni"
-                              #vdni_DOCENTE="ngModel"
-                              [ngClass]="{
-                                'is-invalid': f.submitted && vdni_DOCENTE.invalid
-                              }"
-                              required
-                            />
-                            <div
-                              class="pt-1 text-danger"
-                              *ngIf="f.submitted && vdni_DOCENTE.invalid"
-                              class="invalid-feedback"
-                            >
-                              <span class="form-control-feedback">
-                                <i class="fa fa-times-circle-o"></i> Este campo es
-                                <strong>requerido.</strong>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                  </div>
                 <div class="row col-xs-12 col-md-12 col-lg-12">
                   <div class="form-group  col-xs-4 col-md-4 col-lg-4">
-                    <label for="vnombre_DOCENTE" class="control-label"
-                      >Nombre del Docente:
+                    <label for="dfec_REUNION" class="control-label"
+                      >Fecha:
                     </label>
 
                     <div class="form-group  col-xs-12 col-md-12 col-lg-12">
                       <input
-                        id="vnombre_DOCENTE"
-                        [(ngModel)]="_docente.vnombre_DOCENTE"
-                        name="vnombre_DOCENTE"
-                        type="text"
+                        id="dfec_REUNION"
+                        [(ngModel)]="_reunion.dfec_REUNION"
+                        name="dfec_REUNION"
+                        type="date"
                         class="form-control"
-                        placeholder="Nombre"
-                        #vnombre_DOCENTE="ngModel"
+                        placeholder="Fecha"
+                        #dfec_REUNION="ngModel"
                         [ngClass]="{
-                          'is-invalid': f.submitted && vnombre_DOCENTE.invalid
+                          'is-invalid': f.submitted && dfec_REUNION.invalid
                         }"
                         required
                       />
                       <div
                         class="pt-1 text-danger"
-                        *ngIf="f.submitted && vnombre_DOCENTE.invalid"
+                        *ngIf="f.submitted && dfec_REUNION.invalid"
                         class="invalid-feedback"
                       >
                         <span class="form-control-feedback">
@@ -78,28 +45,28 @@
                       </div>
                     </div>
                   </div>
+
                   <div class="form-group  col-xs-4 col-md-4 col-lg-4">
-                    <label for="vapaterno_DOCENTE" class="control-label"
-                      >Apellido Paterno del Docente:
+                    <label for="dhent_REUNION" class="control-label"
+                      >Hora de Inicio:
                     </label>
 
                     <div class="form-group  col-xs-12 col-md-12 col-lg-12">
                       <input
-                        id="vapaterno_DOCENTE"
-                        [(ngModel)]="_docente.vapaterno_DOCENTE"
-                        name="vapaterno_DOCENTE"
-                        type="text"
+                        id="dhent_REUNION"
+                        [(ngModel)]="_reunion.dhent_REUNION"
+                        name="dhent_REUNION"
+                        type="time"
                         class="form-control"
-                        placeholder="Apellido Paterno"
-                        #vapaterno_DOCENTE="ngModel"
+                        #dhent_REUNION="ngModel"
                         [ngClass]="{
-                          'is-invalid': f.submitted && vapaterno_DOCENTE.invalid
+                          'is-invalid': f.submitted && dhent_REUNION.invalid
                         }"
                         required
                       />
                       <div
                         class="pt-1 text-danger"
-                        *ngIf="f.submitted && vapaterno_DOCENTE.invalid"
+                        *ngIf="f.submitted && dhent_REUNION.invalid"
                         class="invalid-feedback"
                       >
                         <span class="form-control-feedback">
@@ -109,28 +76,28 @@
                       </div>
                     </div>
                   </div>
+
                   <div class="form-group  col-xs-4 col-md-4 col-lg-4">
-                    <label for="vamaterno_DOCENTE" class="control-label"
-                      >Apellido Materno del Docente:
+                    <label for="dhsal_REUNION" class="control-label"
+                      >Hora de Termino:
                     </label>
 
                     <div class="form-group  col-xs-12 col-md-12 col-lg-12">
                       <input
-                        id="vamaterno_DOCENTE"
-                        [(ngModel)]="_docente.vamaterno_DOCENTE"
-                        name="vamaterno_DOCENTE"
-                        type="text"
+                        id="dhsal_REUNION"
+                        [(ngModel)]="_reunion.dhsal_REUNION"
+                        name="dhsal_REUNION"
+                        type="time"
                         class="form-control"
-                        placeholder="Apellido Materno"
-                        #vamaterno_DOCENTE="ngModel"
+                        #dhsal_REUNION="ngModel"
                         [ngClass]="{
-                          'is-invalid': f.submitted && vamaterno_DOCENTE.invalid
+                          'is-invalid': f.submitted && dhsal_REUNION.invalid
                         }"
                         required
                       />
                       <div
                         class="pt-1 text-danger"
-                        *ngIf="f.submitted && vamaterno_DOCENTE.invalid"
+                        *ngIf="f.submitted && dhsal_REUNION.invalid"
                         class="invalid-feedback"
                       >
                         <span class="form-control-feedback">
@@ -142,7 +109,75 @@
                   </div>
                 </div>
 
-                <div
+                <div class="row col-xs-12 col-md-12 col-lg-12">
+                  <div class="form-group  col-xs-12 col-md-12 col-lg-12">
+                    <label for="vlugar_REUNION" class="control-label"
+                      >Lugar:
+                    </label>
+
+                    <div class="form-group  col-xs-12 col-md-12 col-lg-12">
+                      <input
+                        id="vlugar_REUNION"
+                        [(ngModel)]="_reunion.vlugar_REUNION"
+                        name="vlugar_REUNION"
+                        type="text"
+                        class="form-control"
+                        placeholder="Lugar"
+                        #vlugar_REUNION="ngModel"
+                        [ngClass]="{
+                          'is-invalid': f.submitted && vlugar_REUNION.invalid
+                        }"
+                        required
+                      />
+                      <div
+                        class="pt-1 text-danger"
+                        *ngIf="f.submitted && vlugar_REUNION.invalid"
+                        class="invalid-feedback"
+                      >
+                        <span class="form-control-feedback">
+                          <i class="fa fa-times-circle-o"></i> Este campo es
+                          <strong>requerido.</strong>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row col-xs-12 col-md-12 col-lg-12">
+                  <div class="form-group col-xs-12 col-md-12 col-lg-12">
+                    <label for="vobs_REUNION" class="control-label"
+                      >Observaciones:
+                    </label>
+
+                    <div class="form-group  col-xs-12 col-md-12 col-lg-12">
+                      <textarea
+                        id="vobs_REUNION"
+                        [(ngModel)]="_reunion.vobs_REUNION"
+                        name="vobs_REUNION"
+                        type="text"
+                        class="form-control"
+                        placeholder="Observaciones"
+                        #vobs_REUNION="ngModel"
+                        [ngClass]="{
+                          'is-invalid': f.submitted && vobs_REUNION.invalid
+                        }"
+                        required
+                      ></textarea>
+                      <div
+                        class="pt-1 text-danger"
+                        *ngIf="f.submitted && vobs_REUNION.invalid"
+                        class="invalid-feedback"
+                      >
+                        <span class="form-control-feedback">
+                          <i class="fa fa-times-circle-o"></i> Este campo es
+                          <strong>requerido.</strong>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!--                 <div
                   class="row col-xs-12 col-md-12 col-lg-12"
                   *ngIf="!actualizar; else docente"
                 >
@@ -182,8 +217,9 @@
                       </div>
                     </div>
                   </div>
-                </div>
-                <ng-template #docente>
+                </div> -->
+
+                <!--                 <ng-template #docente>
                   <div class="row col-xs-12 col-md-12 col-lg-12">
                     <div class="form-group  col-xs-12 col-md-12 col-lg-12">
                       <label for="vdesc_CARGO" class="control-label"
@@ -220,20 +256,20 @@
                       </div>
                     </div>
                   </div>
-                </ng-template>
+                </ng-template> -->
 
                 <button
                   *ngIf="!actualizar; else elseTemplate"
                   class="btn btn-info form-group "
                   type="submit"
-                  (click)="guardarDocente(f, 'create')"
+                  (click)="guardarReunion(f, 'create')"
                 >
                   Registrar
                 </button>
                 <ng-template #elseTemplate>
                   <button
                     class="btn btn-success form-group"
-                    (click)="guardarDocente(f, 'update')"
+                    (click)="guardarReunion(f, 'update')"
                   >
                     Actualizar
                   </button>

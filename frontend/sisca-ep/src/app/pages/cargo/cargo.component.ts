@@ -32,6 +32,10 @@ export class CargoComponent implements OnInit {
     this._listaCargos = [];
     this._serviceCargo.findAllCargos()
       .subscribe(res => {
+        if(res == null){
+          this._listaCargos=[];
+          return; 
+        }
         this._listaCargos = res;
       })
   }

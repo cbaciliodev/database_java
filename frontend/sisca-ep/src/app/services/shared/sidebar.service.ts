@@ -8,9 +8,16 @@ export class SidebarService {
   menu: any = [
     {
       titulo: 'Principal',
-      icono: 'mdi mdi-gauge',
+      icono: 'mdi mdi-tag-text-outline',
       submenu: [
         {titulo: 'Dashboard', url: '/dashboard'},
+        {titulo:'Asistencia', url:'/listaReunion'}
+      ]
+    },
+    {
+      titulo: 'Mantenimiento',
+      icono: 'mdi mdi-gauge',
+      submenu: [
         {titulo:'Cargos', url:'/cargo'},
         {titulo:'Docentes', url:'/docente'},
         {titulo:'Actividades',url:'/actividad'},

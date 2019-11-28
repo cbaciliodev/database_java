@@ -8,11 +8,26 @@ public class Docente {
 	private String VAMATERNO_DOCENTE;
 	private Cargo cargo;
 
+	private String VDNI_DOCENTE;
+
 	public Docente() {
 	}
+	
+	
 
-	
-	
+	public Docente(Integer iCOD_DOCENTE, String vNOMBRE_DOCENTE, String vAPATERNO_DOCENTE, String vAMATERNO_DOCENTE,
+			Cargo cargo, String vDNI_DOCENTE) {
+		super();
+		ICOD_DOCENTE = iCOD_DOCENTE;
+		VNOMBRE_DOCENTE = vNOMBRE_DOCENTE;
+		VAPATERNO_DOCENTE = vAPATERNO_DOCENTE;
+		VAMATERNO_DOCENTE = vAMATERNO_DOCENTE;
+		this.cargo = cargo;
+		VDNI_DOCENTE = vDNI_DOCENTE;
+	}
+
+
+
 	public Docente(Integer iCOD_DOCENTE, String vNOMBRE_DOCENTE, String vAPATERNO_DOCENTE, String vAMATERNO_DOCENTE) {
 		super();
 		ICOD_DOCENTE = iCOD_DOCENTE;
@@ -20,8 +35,6 @@ public class Docente {
 		VAPATERNO_DOCENTE = vAPATERNO_DOCENTE;
 		VAMATERNO_DOCENTE = vAMATERNO_DOCENTE;
 	}
-
-
 
 	public Integer getICOD_DOCENTE() {
 		return ICOD_DOCENTE;
@@ -61,6 +74,14 @@ public class Docente {
 
 	public void setCargo(Cargo cargo) {
 		this.cargo = cargo;
+	}
+
+	public String getVDNI_DOCENTE() {
+		return VDNI_DOCENTE;
+	}
+
+	public void setVDNI_DOCENTE(String vDNI_DOCENTE) {
+		VDNI_DOCENTE = vDNI_DOCENTE;
 	}
 
 }

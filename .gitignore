@@ -1,5 +1,4 @@
 /ws
-
 /*.zip
-
-/package-lock.json
+/frontend/sisca-ep/node_modules/*
+/frontend/sisca-ep/*.json

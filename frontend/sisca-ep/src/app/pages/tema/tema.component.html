@@ -4,12 +4,12 @@
       <div class="card">
         <div class="card-body">
           <a
-            [routerLink]="['/updateDocente', 'nuevo']"
+            [routerLink]="['/updateTema', 'nuevo']"
             routerLinkActive="router-link-active"
             class="btn waves-effect waves-light btn-xs btn-success text-dark mb-2"
             style="font-size: 15px;"
             ><i class="mdi mdi-account" style="font-size: 15px;"></i> Registar
-            Docentes </a
+            Tema </a
           ><br />
           <!-- Nav tabs -->
           <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -22,7 +22,7 @@
                 role="tab"
                 aria-controls="home"
                 aria-selected="true"
-                ><span><i class="ti-book"></i> Lista de Docentes</span></a
+                ><span><i class="ti-book"></i> Lista de Temas</span></a
               >
             </li>
           </ul>
@@ -34,11 +34,25 @@
               aria-labelledby="home-tab"
             >
               <div class="p-20">
-                <div class="table-responsive">
-                  <div
-                    class="alert alert-info"
-                    *ngIf="_listaDocente.length == 0"
+                <div class="form-group  col-xs-12 col-md-12 col-lg-12">
+                  <label for="actividad" class="control-label"
+                    >Actividades:</label
                   >
+                  <select
+                    (change)="cambiarListaTemas($event.target.value)"
+                    id="actividad"
+                    class="form-control"
+                  >
+                    <option value="0">Seleccione</option>
+                    <option
+                      [value]="item.icod_ACTIVIDAD"
+                      *ngFor="let item of _listaActividad"
+                      >{{ item.vdesc_ACTIVIDAD }}</option
+                    >
+                  </select>
+                </div>
+                <div class="table-responsive">
+                  <div class="alert alert-info" *ngIf="_listaTemas.length == 0">
                     <button
                       type="button"
                       class="close"
@@ -55,46 +69,49 @@
                   </div>
                   <table
                     class="table table-hover table-striped color-bordered-table muted-bordered-table"
-                    *ngIf="_listaDocente.length > 0"
+                    *ngIf="_listaTemas.length > 0"
                   >
                     <thead class="thead-light">
                       <tr>
                         <th class="text-center">#</th>
                         <th class="text-center">Codigo</th>
-                        <th class="text-center">Dni</th>
-                        <th class="text-center">Nombre</th>
-                        <th class="text-center">Apellido Paterno</th>
-                        <th class="text-center">Apellido Materno</th>
-                        <th class="text-center">Cargo</th>
+                        <th class="text-center">Descripci&oacute;n del Tema</th>
+                        <th class="text-center">Estado</th>
                         <th class="text-center" colspan="2">Acci&oacute;n</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr
                         *ngFor="
-                          let item of _listaDocente
+                          let item of _listaTemas
                             | paginate: { itemsPerPage: 6, currentPage: p };
                           let i = index
                         "
                       >
                         <td class="text-center">{{ i + 1 }}</td>
-                        <td>{{ "D0-" + item.icod_DOCENTE }}</td>
-                        <td>{{ item.vdni_DOCENTE }}</td>
-                        <td>{{ item.vnombre_DOCENTE }}</td>
-                        <td>{{ item.vapaterno_DOCENTE }}</td>
-                        <td>{{ item.vamaterno_DOCENTE }}</td>
-                        <td>{{ item.cargo.vdesc_CARGO }}</td>
+                        <td class="text-justify">
+                          {{ "D0-" + item.icod_TEMA }}
+                        </td>
+                        <td>{{ item.vdesc_TEMA }}</td>
+
+                        <td *ngIf="item.cest_TEMA == 1">
+                          <div>Pendiente</div>
+                        </td>
+                        <td *ngIf="item.cest_TEMA == 2">
+                          <div>Culminado</div>
+                        </td>
+
                         <td class="text-center">
                           <button
                             class="btn waves-effect waves-light btn-xs btn-warning"
-                            [routerLink]="['/updateDocente', item.icod_DOCENTE]"
+                            [routerLink]="['/updateTema', item.icod_TEMA]"
                           >
                             <i class="fa fa-edit"></i> Editar
                           </button>
                         </td>
                         <td class="text-center">
                           <button
-                          (click)="deleteDocente(item.icod_DOCENTE)"
+                            (click)="deleteTema(item.icod_TEMA)"
                             class="btn waves-effect waves-light btn-xs btn-danger"
                           >
                             <i class="fa fa-trash"></i> Eliminar
@@ -104,10 +121,11 @@
                     </tbody>
                   </table>
                   <pagination-controls
-                  class="bg-danger"
-                  *ngIf="_listaDocente.length != 0"
-                  (pageChange)="p = $event"
-                ></pagination-controls>
+                    class="bg-danger"
+                    *ngIf="_listaTemas.length != 0"
+                    (pageChange)="p = $event"
+                  >
+                  </pagination-controls>
                 </div>
               </div>
             </div>

@@ -11,6 +11,10 @@ import { ActividadUpdateComponent } from './actividades/actividad-update.compone
 import { TemaComponent } from './tema/tema.component';
 import { UpdateTemaComponent } from './tema/update-tema.component';
 import { ReunionComponent } from './reunion/reunion.component';
+import { AsignacionesTemasComponent } from './reunion/asignaciones-temas.component';
+import { AsistenciaComponent } from './asistencia/asistencia.component';
+import { CreateReunionComponent } from './reunion/create-reunion.component';
+import { FormularioReunionComponent } from './reunion/formulario-reunion.component';
 
 const pagesRoutes: Routes = [
     {
@@ -71,6 +75,23 @@ const pagesRoutes: Routes = [
                 path: 'reunion',
                 component: ReunionComponent,
                 data: { titulo: 'Asignación de Temas', link: 'Reunion' }
+            },
+            {
+                path: 'listaAsignado', component: AsignacionesTemasComponent,
+                data: { titulo: 'Lista de Asignación de Temas', link: 'Reunion' }
+            },
+
+            {
+                path: 'listaReunion', component: CreateReunionComponent,
+                data: { titulo: 'Lista de Reuniones', link: 'Reunion' }
+            },
+            {
+                path: 'createReunion/:id', component: FormularioReunionComponent,
+                data: { titulo: 'Registrar Reunión', link: 'Reunion' }
+            },
+            {
+                path: 'asistencia/:id', component: AsistenciaComponent,
+                data: { titulo: 'Lista de Asignación de Temas', link: 'Asistencia' }
             },
 
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }

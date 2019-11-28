@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { Docente } from 'src/app/models/docente.model';
-import { Cargo } from 'src/app/models/cargo.model';
+import { Reunion } from 'src/app/models/reunion.model';
 import { CargoService } from 'src/app/services/service.index';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import swal from 'sweetalert'
-import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-update-docente',
-  templateUrl: './update-docente.component.html',
-  styleUrls: ['./update-docente.component.css']
+  selector: 'app-create-reunion',
+  templateUrl: './create-reunion.component.html',
+  styleUrls: ['./create-reunion.component.css']
 })
-export class UpdateDocenteComponent implements OnInit {
+export class CreateReunionComponent implements OnInit {
 
-  public _cargo = new Cargo(null, '');
-  public _docente = new Docente(null, '', '', '', this._cargo,'');
 
-  public _lista_cargos: Cargo[];
+  public _reunion = new Reunion(null, '', '', '', '', '');
+  public _listaReuniones: Reunion[];
+
+
   actualizar = false;
   _habilitar = true;
   _check = false;
@@ -24,42 +24,37 @@ export class UpdateDocenteComponent implements OnInit {
   constructor(public _serviceCargo: CargoService,
     public _router: Router,
     public _activateRouter: ActivatedRoute) {
-    this._lista_cargos = [];
+    this._listaReuniones = [];
 
     _activateRouter.params.subscribe(params => {
       let id = params['id'];
       if (id !== 'nuevo') {
         this.actualizar = true;
-        this.cargarDocente(id);
       }
     })
 
   }
 
   ngOnInit() {
-    this.cargarListaCargo();
+    this.findAllReunion();
   }
 
+  findAllReunion() {
+
+    this._serviceCargo.findAllReunionesDocentes()
+      .subscribe(res => {
+        console.log(res)
+        if (res == null) {
+          this._listaReuniones = [];
+          return;
+        }
+        this._listaReuniones = res;
+      })
+  }
 
   valor(s: any) {
     console.log(s.target.value, ' valor')
   }
-  cargarDocente(id: number) {
-
-    this._serviceCargo.findOneDocenteById(id)
-      .subscribe(docente => {
-        this._docente = docente
-      })
-  };
-
-  cargarListaCargo() {
-    this._serviceCargo.findAllCargos()
-      .subscribe(cargo => {
-        this._lista_cargos = cargo
-      })
-  };
-
-
 
   guardarDocente(f: NgForm, s: string) {
 
@@ -69,21 +64,27 @@ export class UpdateDocenteComponent implements OnInit {
 
     if (s == 'create') {
 
-      this._docente.cargo.icod_CARGO = f.value.vdesc_CARGO
 
-      this._serviceCargo.createDocente(this._docente)
+
+      this._serviceCargo.createReunion(this._reunion)
         .subscribe(data => {
           swal(`Docente Creado`, `${data.mensaje}`, `success`)
           this._router.navigate(['/docente'])
         });
     }
 
-    if (s == 'update') {
+    /* if (s == 'update') {
       this._serviceCargo.updateDocente(this._docente, this._docente.icod_DOCENTE)
         .subscribe(data => {
           swal(`Docente Actualizado`, `${data.mensaje}`, `success`)
           this._router.navigate(['/docente'])
         });
-    }
+    } */
+  }
+
+  deleteDocente(i :number){
+
   }
 }
+
+
